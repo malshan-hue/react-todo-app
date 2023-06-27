@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import MyForm from "./components/add-todo.component";
+import DisplayToDo from "./components/display-to-do.component";
+
 
 function App() {
+
+  //stores the list of todos in the state variable todos and initializes it to an empty array
+  const [todos, setTodos] = useState([]);
+
+  //handles the delete button click event and deletes the todo from the list 
+  const deleteTodo = (id) => {
+    const updatedTodos = todos.filter(todo => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MyForm setTodos={setTodos}/>
+      <DisplayToDo todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }
