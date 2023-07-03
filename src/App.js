@@ -20,9 +20,17 @@ function App() {
 
   return (
     <div>
-      <MyForm setTodos={setTodos}/>
-      <DisplayToDo todos={todos} deleteTodo={deleteTodo} setCompletedTodos={setCompletedTodos}/>
-      <CompletedTodos completedTodos={completedTodos}/>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-8'>
+            <MyForm setTodos={setTodos}/>
+            <DisplayToDo todos={todos} deleteTodo={deleteTodo} setCompletedTodos={setCompletedTodos}/>
+          </div>
+          <div className='col-4'>
+            <CompletedTodos completedTodos={completedTodos}/>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
