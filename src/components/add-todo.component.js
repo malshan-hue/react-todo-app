@@ -23,7 +23,8 @@ function MyForm({ setTodos }) {
 
             id: uuidv4(),
             description: inputValue,
-            created: new Date().toLocaleString()
+            created: new Date().toLocaleString(),
+            completedDate: null
         }
 
         //calls the setTodos function passed from the parent component

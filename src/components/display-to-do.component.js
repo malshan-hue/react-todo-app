@@ -1,10 +1,23 @@
 import React from "react";
 
-function DisplayToDo({todos, deleteTodo}) {
+function DisplayToDo({todos, deleteTodo, setCompletedTodos}) {
 
     //handles the delete button click event and deletes the todo from the list
     const handleDelete = (id) => {
         deleteTodo(id);
+    }
+
+    const handleComplete = (id) => {
+        const completedTodos = todos.find(todo => todo.id === id);
+
+        if(completedTodos){
+
+            completedTodos.completedDate = new Date().toLocaleString();
+
+            setCompletedTodos((prevCompletedTodos) => [...prevCompletedTodos, completedTodos]);
+
+            deleteTodo(id);
+        }
     }
 
     return(
@@ -28,7 +41,8 @@ function DisplayToDo({todos, deleteTodo}) {
                                 <td>{todo.description}</td>
                                 <td>{todo.created}</td>
                                 <td>
-                                    <button className="btn btn-success">Complete</button> &nbsp; 
+                                    <button className="btn btn-success"
+                                        onClick={() => handleComplete(todo.id)}>Complete</button> &nbsp; 
                                     <button className="btn btn-danger"
                                         onClick={() => handleDelete(todo.id)}>Delete</button> 
                                 </td>
@@ -38,6 +52,7 @@ function DisplayToDo({todos, deleteTodo}) {
                 </table>
             </div>
         </div>
+        
     )
 
 }
